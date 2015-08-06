@@ -1,0 +1,13 @@
+# This is an example renogen config file
+#
+# output_format: markdown
+# input_source: yaml
+supported_keys:
+  - link
+  - summary
+  - identifier
+single_line_format: 'summary (see link)'
+# single_line_format: '<a href=\"link\" target=\"_blank\">identifier</a> - summary'
+# single_line_format: '[identifier](link) - summary'
+
+changelog_path: './change_log/'

@@ -1,0 +1,15 @@
+Summary:
+  identifier: ReNoGen
+  link: https://github.com/DDAZZA/renogen
+  summary: Added ReNoGen gem
+
+Detailed: |
+  Added ReNoGen gem
+
+  This will allow release notes to be generated automatically
+
+  Example of usage.
+    $ renogen v1.2.3 > release_v1_2_3.md
+
+Tasks:
+  - $ bundle install
