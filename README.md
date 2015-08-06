@@ -13,7 +13,6 @@ or add the following to your Gemfile
 `gem 'renogen', :require => false, :group => :development`
 
 `$ renogen init # optional  creates directory for notes`
-`$ renogen --help # list available command options
 
 ### Usage
 
@@ -24,12 +23,14 @@ To generate your notes run the following command
 Unfortunatly renogen cant write documentation for your change.
 By default renogen uses the yaml file stratagy to extract your notes
 
+`$ renogen --help # list available command options`
+
 #### Adding YAML feature notes
 
 Create a file within the next version folder(default:'change_log/next/')
 
 Example feature note
-```
+```yaml
 # change_log/next/example.yml
 MyFormattedSingleLine:
   identifier: bug_1
@@ -51,24 +52,28 @@ MyList:
 #### Examples
 
 Prepend your notes to a changelog file(TODO make command simple)
+
 `$ renogen --format markdown v1.2.1 > CHANGELOG.md | cat - CHANGELOG > CHANGELOG.tmp && mv CHANGELOG.tmp CHANGELOG`
 
 Writes notes to html file
-`$ renogen --format html v1.2.1 > v1_2_1.html
+
+`$ renogen --format html v1.2.1 > v1_2_1.html`
 
 Print all notes since v1.0.0 as text
-`$ renogen --format text -l v1.0.0 v1.2.1
+
+`$ renogen --format text -l v1.0.0 v1.2.1`
 
 ### Configuration
 
 TODO 
-`.renogen` file
-single line format
-change log directory
+* `.renogen` file
+* single line format
+* change log directory
 
 ### License
 
 Renogen is a programming tool to generate a log of source code changes
+
 Copyright (C) 2015 David Elliott
 
 This program is free software; you can redistribute it and/or modify
