@@ -1,6 +1,6 @@
 # Renogen
 
-Renogen or Re(lease) No(tes) Gen(erator) is a tool to separate feature notes from product versions.
+Renogen or Re(lease) No(tes) Gen(erator) is a development tool to separate feature notes from product versions.
 
 ### Installation
 
