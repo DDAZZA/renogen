@@ -55,12 +55,12 @@ module Renogen
 
         new_version = options.shift
         if new_version.nil?
-          puts "Missing argument: VERSION"
+          puts "Error: Missing argument 'VERSION'"
           puts
           puts opt_parser
           exit 1
         elsif options.count > 0
-          puts "Unknown arguments: #{options}"
+          puts "Error: Unknown arguments: #{options}"
           puts
           puts opt_parser
           exit 1
