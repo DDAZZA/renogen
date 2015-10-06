@@ -12,8 +12,8 @@ or add the following to your Gemfile
 
 `gem 'renogen', :require => false, :group => :development`
 
-`$ renogen init # optional  creates directory for notes`
-`$ renogen --help # list available command options
+`$ renogen init # optional  Creates directory for notes`
+`$ renogen --help # List available options
 
 ### Usage
 
@@ -26,29 +26,31 @@ By default renogen uses the yaml file stratagy to extract your notes
 
 #### Adding YAML feature notes
 
-Create a file within the next version folder(default:'change_log/next/')
+Create a new file within the 'next' version folder(default:'change_log/next/')
 
 Example feature note
 ```
 # change_log/next/example.yml
-MyFormattedSingleLine:
+my_formatted_single_line:
   identifier: bug_1
   link: example.com/bug_1
   summary: fixes all issues
 
-MyMultiLineNote: |
+unformatted_single_line: "This is an unformatted single line"
+
+my_multiline_note: |
   Title
 
   description
 
   Example of usage
     $ foo bar baz
-MyList:
+my_list:
   - e.g. run this command
   - e.g. run this as well
 ```
 
-#### Examples
+#### Usage Examples
 
 Prepend your notes to a changelog file(TODO make command simple)
 `$ renogen --format markdown v1.2.1 > CHANGELOG.md | cat - CHANGELOG > CHANGELOG.tmp && mv CHANGELOG.tmp CHANGELOG`
@@ -61,10 +63,10 @@ Print all notes since v1.0.0 as text
 
 ### Configuration
 
-TODO 
-`.renogen` file
-single line format
-change log directory
+TODO
+How to set configuration with `.renogen` file
+How to change formatted single line
+changing the default change log path
 
 ### License
 
