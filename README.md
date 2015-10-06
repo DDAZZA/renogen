@@ -68,17 +68,9 @@ Print all notes since v1.0.0 as text
 
 ### Configuration
 
-<<<<<<< HEAD
 TODO
-How to set configuration with `.renogen` file
-How to change formatted single line
-changing the default change log path
-=======
-TODO 
-* `.renogen` file
-* single line format
-* change log directory
->>>>>>> 32d03ac9390f330a3c33676a94926f8d9a80edd1
+* How to set configuration with `.renogen` file
+* How to change formatted single line
 
 ### License
 
