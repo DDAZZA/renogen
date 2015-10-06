@@ -1,5 +1,5 @@
 module Renogen
-  # Contains methods for extracting release notes
+  # Methods for extracting release notes
   module ExtractionStratagies
 
     class << self
@@ -34,8 +34,8 @@ module Renogen
       end
     end
 
-    require'renogen/extraction_stratagies/base'
-    require'renogen/extraction_stratagies/yaml_file'
+    require_relative 'extraction_stratagies/base'
+    require_relative 'extraction_stratagies/yaml_file'
     # require_relative 'extraction_stratagies/github'
     # require_relative 'extraction_stratagies/gitlog'
   end

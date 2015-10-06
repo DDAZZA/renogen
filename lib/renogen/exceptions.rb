@@ -1,8 +1,8 @@
 module Renogen
-  # Custom exceptions
+  # Custom exceptions throw by the libary
   module Exceptions
-    require 'renogen/exceptions/base'
-    require 'renogen/exceptions/extraction_stratagy_not_found'
-    require 'renogen/exceptions/formatter_not_found'
+    require_relative 'exceptions/base'
+    require_relative 'exceptions/extraction_stratagy_not_found'
+    require_relative 'exceptions/formatter_not_found'
   end
 end

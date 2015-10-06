@@ -1,4 +1,5 @@
 module Renogen
+  # This is the conductor of the application
   class Generator
     attr_accessor :source, :version, :output_format, :options
 

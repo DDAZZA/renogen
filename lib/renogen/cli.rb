@@ -27,7 +27,7 @@ module Renogen
       end
     end
 
-    # Initialize the current working directory with example change
+    # Initialize the current working directory with an example change
     def self.init
       Dir.mkdir('./change_log')
       puts "Created './change_log/'"

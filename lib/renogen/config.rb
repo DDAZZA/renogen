@@ -7,7 +7,6 @@ module Renogen
     include Singleton
     attr_accessor :single_line_format, :input_source, :output_format, :supported_keys, :changelog_path
 
-
     def initialize
       config_file = load_yaml_config
       self.single_line_format = config_file['single_line_format'] || 'summary (see link)'.freeze
@@ -17,6 +16,9 @@ module Renogen
       self.changelog_path = config_file['changelog_path']
     end
 
+
+    # Renogen configuration extension
+    # a block can be provided to programatily setup configuration values
     def self.configure
       yield instance
     end

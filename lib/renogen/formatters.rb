@@ -1,5 +1,5 @@
 module Renogen
-  # Formatters are used to manipulate how the change is output
+  # Formatters to manipulate how the change is output
   #
   # Also has methods to retrive and add a formatters
   module Formatters
@@ -24,7 +24,7 @@ module Renogen
       # @param identifier [Symbol]
       # @param klass [Symbol]
       def add(identifier, klass)
-        raise 'name taken' unless formatters[name].nil?
+        # raise 'name taken' unless formatters[name].nil?
         formatters[identifier]=klass
       end
 
@@ -36,8 +36,8 @@ module Renogen
     end
   end
 
-  require 'renogen/formatters/base'
-  require 'renogen/formatters/plain_text'
-  require 'renogen/formatters/markdown'
-  require 'renogen/formatters/html'
+  require_relative 'formatters/base'
+  require_relative 'formatters/plain_text'
+  require_relative 'formatters/markdown'
+  require_relative 'formatters/html'
 end
