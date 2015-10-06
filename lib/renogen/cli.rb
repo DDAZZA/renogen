@@ -23,6 +23,7 @@ module Renogen
         generator.generate!
       rescue Renogen::Exceptions::Base => e
         puts e.message
+        exit -1
       end
     end
 

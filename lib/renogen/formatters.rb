@@ -24,7 +24,7 @@ module Renogen
       # @param identifier [Symbol]
       # @param klass [Symbol]
       def add(identifier, klass)
-        # TODO raise 'name taken' unless formatters[name].nil?
+        raise 'name taken' unless formatters[name].nil?
         formatters[identifier]=klass
       end
 

@@ -13,10 +13,16 @@ module Renogen
           @directory_path ||= './change_log/'
         end
 
+        # Iterates thorugh each change file and yields the contents.
+        # 
+        # an exception is thrown if the contents are blank
+        #
         # @yield [Hash] yaml_file
         def each_yaml_file
           change_directories.each do |file_path|
-            yield ::YAML.load_file(file_path)
+            content = ::YAML.load_file(file_path)
+            raise Exceptions::YamlFileBlank.new(file_path) unless content
+            yield content
           end
         end
 
