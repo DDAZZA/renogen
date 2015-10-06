@@ -10,6 +10,8 @@ module Renogen
         @change = change
       end
 
+      # Coverts the item into its string representation
+      #
       # @return [String]
       def to_s
         case change.class.to_s
@@ -18,8 +20,7 @@ module Renogen
         when Hash.to_s
           format_oneline(change)
         when Array.to_s
-          # TODO should return a string
-          change
+          format_array(change)
         else
           raise TypeError
         end
@@ -30,6 +31,7 @@ module Renogen
         change.is_a? Array
       end
 
+      # Iterater for each item within the change
       def each
         change.each do |item|
           yield item.to_s
@@ -40,6 +42,11 @@ module Renogen
 
       def format_multiline(change)
         change.gsub('\n', '\n \n ') + "\n"
+      end
+
+      def format_array(change)
+        # TODO should return a string
+        change
       end
 
       def format_oneline(change)
