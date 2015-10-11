@@ -15,7 +15,7 @@ module Renogen
         if formatter
           formatter.new(options)
         else
-          raise Renogen::Exceptions::FormatterNotFound.new(format_type)
+          raise Renogen::Exceptions::StratagyNotFound.new(format_type)
         end
       end
 

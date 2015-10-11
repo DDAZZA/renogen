@@ -14,7 +14,7 @@ module Renogen
         if stratagy
           stratagy.new(options)
         else
-          raise Renogen::Exceptions::ExtractionStratagyNotFound.new(stratagy_type)
+          raise Renogen::Exceptions::StratagyNotFound.new(stratagy_type)
         end
       end
 

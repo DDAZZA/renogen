@@ -1,7 +1,7 @@
 module Renogen
   module Exceptions
     # Raised when an extraction stratagy for a given key can not be found
-    class ExtractionStratagyNotFound < Base
+    class StratagyNotFound < Base
       attr_reader :missing_stratagy
 
       def initialize(type)
@@ -13,7 +13,7 @@ module Renogen
       #
       # @return [String]
       def message
-        "Error: Unsupported source type '#{missing_stratagy}'"
+        "Error: Stratagy type '#{missing_stratagy}' not found"
       end
     end
   end
