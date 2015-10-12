@@ -5,6 +5,13 @@ describe Renogen::ChangeLog::Item do
   subject { described_class.new('foo', change) }
 
   describe '#to_s' do
+    context "when change type is nil" do
+      let(:change) { nil }
+      it 'returns a blank string ' do
+        expect(subject.to_s).to eql ""
+      end
+    end
+
     context "when change type is a 'String'" do
       let(:change) { "foo\nbar\n" }
       it 'returns string with newline at end' do

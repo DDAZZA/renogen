@@ -23,7 +23,7 @@ module Renogen
         if change.list?
           change.each { |item| puts formatter.write_change(item) }
         else
-          puts formatter.write_change(change.to_s)
+          puts formatter.write_change(change.to_s) if change.to_s.size > 0
         end
       end
 

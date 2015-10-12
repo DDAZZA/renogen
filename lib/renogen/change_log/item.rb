@@ -14,12 +14,13 @@ module Renogen
       #
       # @return [String]
       def to_s
+        return '' unless change
         case change.class.to_s
-        when String.to_s
+        when 'String'
           format_multiline(change)
-        when Hash.to_s
+        when 'Hash'
           format_oneline(change)
-        when Array.to_s
+        when 'Array'
           format_array(change)
         else
           raise TypeError
