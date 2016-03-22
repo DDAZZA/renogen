@@ -2,6 +2,12 @@
 
 Renogen or Re(lease) No(tes) Gen(erator) is a development tool to separate feature notes from product versions.
 
+
+
+- Notes might not be in the correct order (e.g. if a task has to be run before/after something else)
+- Issue Duplicate notes might be added (e.g. 2 tickets might want to run the same task)
+
+
 ### Installation
 
 To install Renogen, use the following command:
@@ -13,7 +19,8 @@ or add the following to your Gemfile
 `gem 'renogen', :require => false, :group => :development`
 
 `$ renogen init # optional  Creates directory for notes`
-`$ renogen --help # List available options
+
+`$ renogen --help # List available options`
 
 ### Usage
 
