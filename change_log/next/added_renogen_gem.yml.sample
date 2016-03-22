@@ -1,0 +1,12 @@
+Summary:
+  identifier: renogen
+  link: https://github.com/DDAZZA/renogen
+  summary: Added ReNoGen gem
+
+Detailed: |
+  Added ReNoGen gem
+
+  Allows release notes to be generated
+
+Tasks:
+  - $ renogen vX.Y.Z > release_vX_Y_Z.md

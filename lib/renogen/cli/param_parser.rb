@@ -17,10 +17,14 @@ module Renogen
         args = Hash.new
 
         opt_parser = OptionParser.new do |opts|
-          opts.banner = "Usage: renogen [options] VERSION"
+          opts.banner =  "Usage:"
+          opts.separator "    renogen [options] VERSION"
+          opts.separator "    renogen new TICKET_NAME"
+          opts.separator "    renogen init"
           opts.separator ""
           opts.separator "Required:"
-          opts.separator "  VERSION  this is the version that is currently being required:"
+          opts.separator "  VERSION      this is the version that is currently being required:"
+          opts.separator "  TICKET_NAME  this is the name of the new ticket to be created:"
           opts.separator ""
           opts.separator "Options:"
 
@@ -55,7 +59,7 @@ module Renogen
 
         new_version = options.shift
         if new_version.nil?
-          puts "Error: Missing argument 'VERSION'"
+          puts "Error: Missing argument"
           puts
           puts opt_parser
           exit 1

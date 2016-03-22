@@ -5,7 +5,7 @@ module Renogen
   # Stores configuratin values to be used by the libary
   class Config
     include Singleton
-    attr_accessor :single_line_format, :input_source, :output_format, :supported_keys, :changelog_path
+    attr_accessor :single_line_format, :input_source, :output_format, :supported_keys, :changelog_path, :default_headings
 
     def initialize
       config_file = load_yaml_config
@@ -13,7 +13,8 @@ module Renogen
       self.supported_keys = config_file['supported_keys'] || ['identifier', 'link', 'summary'].freeze
       self.input_source = config_file['input_source'] || 'yaml'.freeze
       self.output_format = config_file['output_format'] || 'markdown'.freeze
-      self.changelog_path = config_file['changelog_path']
+      self.changelog_path = config_file['changelog_path'] || './change_log'.freeze
+      self.default_headings = config_file['default_headings'] || %w(Summary Detailed Tasks).freeze
     end
 
 
