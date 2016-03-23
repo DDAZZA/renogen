@@ -3,9 +3,9 @@
 Renogen or Re(lease) No(tes) Gen(erator) is a development tool to separate feature notes from product versions.
 
 
-
-- Notes might not be in the correct order (e.g. if a task has to be run before/after something else)
-- Issue Duplicate notes might be added (e.g. 2 tickets might want to run the same task)
+This renogen can not do and will have to be reviewed manually
+- Order the notes in the orrect order (e.g. if a task has to be run before/after something else)
+- Remove Duplicate notes that might be added (e.g. 2 tickets might want to run the same task)
 
 
 ### Installation
@@ -78,6 +78,9 @@ Print all notes since v1.0.0 as text
 TODO
 * How to set configuration with `.renogen` file
 * How to change formatted single line
+
+### Why does renogen not use renogen?
+The amount of activity and contributes for this project is small and so it is more practical to use a text file.
 
 ### License
 
