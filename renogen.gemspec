@@ -4,7 +4,7 @@ require 'renogen/version'
 Gem::Specification.new do |s|
   s.name        = 'renogen'
   s.version     = Renogen::VERSION
-  s.date        = '2015-10-12'
+  s.date        = '2016-03-23'
   s.summary     = "Release Notes/changelog Generator"
   s.description = "A tool to separate product feature release notes from the product versions."
   s.authors     = "Dave Elliott"

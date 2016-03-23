@@ -1,3 +1,7 @@
+# 1.1.1
+## Minor
+* Fixed gemspec date
+
 # 1.1.0
 ## Improvement
 * Added 'new' argument to create new template ticket
