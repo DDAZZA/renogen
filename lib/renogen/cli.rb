@@ -10,13 +10,16 @@ module Renogen
     # @param args [Array]
     def self.run(args)
       return init if args.first == 'init'
+      return new_ticket(args[1]) if args.first == 'new'
+
       param_parser = ParamParser.new(args)
       version, options = param_parser.parse
+      config_instance = Config.instance
 
-      format = options['format'] || Config.instance.output_format
-      source = options['source'] || Config.instance.input_source
-      options['changelog_path'] ||= Config.instance.changelog_path
-      options['old_version'] ||= Config.instance.changelog_path
+      format = options['format'] || config_instance.output_format
+      source = options['source'] || config_instance.input_source
+      options['changelog_path'] ||= config_instance.changelog_path
+      options['old_version'] ||= config_instance.changelog_path
 
       begin
         generator = Renogen::Generator.new(version, source, format, options)
@@ -29,6 +32,7 @@ module Renogen
 
     # Initialize the current working directory with an example change
     def self.init
+      # TODO Refactor to use Config.instance.changelog_path
       Dir.mkdir('./change_log')
       puts "Created './change_log/'"
 
@@ -56,6 +60,19 @@ module Renogen
         f.write("changelog_path: './change_log/'\n")
       end
       puts "Created '.renogen'"
+    end
+
+    # Creates a new template file
+    #
+    # @param ticket_name [String]
+    def self.new_ticket(ticket_name)
+      file_path = File.join(Config.instance.changelog_path, 'next', "#{ticket_name}.yml")
+      File.open(file_path, 'w') do |f|
+        Config.instance.default_headings.each do |h|
+          f.write("#{h}:\n")
+        end
+      end
+      puts "Created '#{file_path}'"
     end
   end
 end
