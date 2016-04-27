@@ -1,9 +1,9 @@
 module Renogen
   module Formatters
-    # Implements a template pattern that forces the implemention of required 
+    # Implements a template pattern that forces the implemention of required
     # methods in sub classes
     class Base
-      def initialize(options={})
+      def initialize(options = {})
       end
 
       # Adds class with identifier to formatters
@@ -17,7 +17,7 @@ module Renogen
       #
       # @param header [String]
       # @return [NotImplementedError]
-      def write_header(header)
+      def write_header(_header)
         raise NotImplementedError
       end
 
@@ -25,7 +25,7 @@ module Renogen
       #
       # @param group [String]
       # @return [NotImplementedError]
-      def write_group(group)
+      def write_group(_group)
         raise NotImplementedError
       end
 
@@ -39,7 +39,7 @@ module Renogen
       #
       # @param change [String]
       # @return [NotImplementedError]
-      def write_change(change)
+      def write_change(_change)
         raise NotImplementedError
       end
 

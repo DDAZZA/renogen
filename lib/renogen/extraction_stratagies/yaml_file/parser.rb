@@ -1,12 +1,11 @@
 module Renogen
   module ExtractionStratagies
     module YamlFile
-
       # Reads change data from files in configured directory
       class Parser
         attr_reader :changelog
 
-        def initialize(options={})
+        def initialize(options = {})
           @changelog = options[:changelog] || ChangeLog::Model.new
           @yaml_file_reader = Reader.new(options['changelog_path'], options)
         end
@@ -33,7 +32,6 @@ module Renogen
           Renogen::Config.instance
         end
       end
-
     end
   end
 end

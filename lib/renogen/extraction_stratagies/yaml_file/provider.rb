@@ -1,13 +1,12 @@
 module Renogen
   module ExtractionStratagies
     module YamlFile
-
       # Reads change data from files in configured directory
       class Provider < Base
         register :yaml_file
         register :yaml
 
-        def initialize(options={})
+        def initialize(options = {})
           super
           @yaml_parser = Parser.new(options)
         end

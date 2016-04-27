@@ -2,7 +2,6 @@ module Renogen
   module ExtractionStratagies
     # Template for all extraction stratagies
     class Base
-
       # Adds class with identifier to extraction stratagies
       #
       # @param identifier [String]
@@ -10,7 +9,7 @@ module Renogen
         Renogen::ExtractionStratagies.add(identifier.to_sym, self)
       end
 
-      def initialize(options={})
+      def initialize(_options = {})
         @changelog ||= ChangeLog::Model.new
       end
 

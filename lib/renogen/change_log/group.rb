@@ -4,7 +4,7 @@ module Renogen
     class Group
       attr_reader :name, :changes
 
-      def initialize(group_name, options={})
+      def initialize(group_name)
         @name = group_name
         @changes ||= []
       end
@@ -15,7 +15,6 @@ module Renogen
       def add(new_change)
         @changes << new_change
       end
-
     end
   end
 end

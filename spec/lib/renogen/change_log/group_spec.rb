@@ -8,6 +8,5 @@ describe Renogen::ChangeLog::Group do
       subject.add('foo')
       expect(subject.changes).to include('foo')
     end
-
   end
 end

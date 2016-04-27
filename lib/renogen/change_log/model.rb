@@ -7,7 +7,7 @@ module Renogen
       attr_reader :items
       attr_accessor :version
 
-      def initialize(options={})
+      def initialize(options = {})
         @version = options[:version]
         @items = []
       end

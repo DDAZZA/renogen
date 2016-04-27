@@ -24,7 +24,7 @@ module Renogen
       #
       # @return [String]
       def write_group_end
-        "</ul>"
+        '</ul>'
       end
 
       # Outputs a line or block as the body for a change.
@@ -39,7 +39,7 @@ module Renogen
       #
       # @param changelog [ChangeLog]
       # @return [String]
-      def write_footer(changelog)
+      def write_footer(_changelog)
         '</html>'
       end
     end

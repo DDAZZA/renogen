@@ -10,7 +10,7 @@ describe Renogen::ChangeLog::Model do
 
     it 'returns hash of changes by group_name' do
       subject.add_change(change_item)
-      expect(subject.groups).to eql({change_item.group_name => [change_item]})
+      expect(subject.groups).to eql(change_item.group_name => [change_item])
     end
   end
 
@@ -29,8 +29,7 @@ describe Renogen::ChangeLog::Model do
     end
 
     it 'raises error when non valid change is added' do
-      expect{subject.add_change('bar')}.to raise_error TypeError
+      expect { subject.add_change('bar') }.to raise_error TypeError
     end
   end
-
 end

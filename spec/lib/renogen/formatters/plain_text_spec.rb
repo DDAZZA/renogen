@@ -17,13 +17,13 @@ describe Renogen::Formatters::PlainText do
 
   describe '#write_group' do
     it 'returns group' do
-      expect(subject.write_group('group')).to eql "group"
+      expect(subject.write_group('group')).to eql 'group'
     end
   end
 
   describe '#write_change' do
     it 'returns change with newline and hyphen' do
-      expect(subject.write_change('change')).to eql "- change"
+      expect(subject.write_change('change')).to eql '- change'
     end
   end
 end

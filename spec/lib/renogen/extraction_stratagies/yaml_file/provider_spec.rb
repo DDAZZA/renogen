@@ -8,5 +8,4 @@ describe Renogen::ExtractionStratagies::YamlFile::Provider do
   it "is returned for 'yaml'" do
     expect(Renogen::ExtractionStratagies.obtain(:yaml)).to be_a described_class
   end
-
 end

@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Renogen::Formatters::Html do
-
   it 'is registered' do
     expect(Renogen::Formatters.obtain(:html)).to be_kind_of described_class
   end
@@ -20,13 +19,13 @@ describe Renogen::Formatters::Html do
 
   describe '#write_group_end' do
     it 'returns closing list tag' do
-      expect(subject.write_group_end).to eql "</ul>"
+      expect(subject.write_group_end).to eql '</ul>'
     end
   end
 
   describe '#write_change' do
     it 'returns change with newline and hyphen' do
-      expect(subject.write_change('change')).to eql "  <li>change</li>"
+      expect(subject.write_change('change')).to eql '  <li>change</li>'
     end
   end
 

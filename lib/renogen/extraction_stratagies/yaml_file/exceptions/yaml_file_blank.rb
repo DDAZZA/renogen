@@ -22,4 +22,3 @@ module Renogen
     end
   end
 end
-

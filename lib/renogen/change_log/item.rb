@@ -5,7 +5,7 @@ module Renogen
       attr_accessor :change
       attr_reader :group_name
 
-      def initialize(group_name, change, options={})
+      def initialize(group_name, change)
         @group_name = group_name
         @change = change
       end
@@ -46,12 +46,12 @@ module Renogen
       end
 
       def format_array(change)
-        # TODO should return a string
+        # TODO: should return a string
         change
       end
 
-      def format_oneline(change)
-        # TODO Refactor
+      def format_oneline(_change)
+        # TODO: Refactor
         string = config.single_line_format.downcase.gsub('\n', '\n  ')
         config.supported_keys.each do |key|
           string = string.gsub(key, '#{change[\'' + key + '\']}')

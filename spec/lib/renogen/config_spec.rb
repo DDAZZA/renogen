@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Renogen::Config do
-
   subject { described_class.instance }
 
   describe '#configure' do
@@ -15,5 +14,4 @@ describe Renogen::Config do
       expect(subject.single_line_format).to eql 'bar'
     end
   end
-
 end

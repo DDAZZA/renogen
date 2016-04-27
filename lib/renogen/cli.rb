@@ -32,14 +32,14 @@ module Renogen
 
     # Initialize the current working directory with an example change
     def self.init
-      # TODO Refactor to use Config.instance.changelog_path
+      # TODO: Refactor to use Config.instance.changelog_path
       Dir.mkdir('./change_log')
       puts "Created './change_log/'"
 
       Dir.mkdir('./change_log/next')
       puts "Created './change_log/next/'"
 
-      File.open("./change_log/next/added_renogen_gem.yml", 'w') do |f|
+      File.open('./change_log/next/added_renogen_gem.yml', 'w') do |f|
         f.write("Summary:\n")
         f.write("  identifier: renogen\n")
         f.write("  link: https://github.com/DDAZZA/renogen\n")
@@ -56,7 +56,7 @@ module Renogen
 
       puts "Created './change_log/next/added_renogen_gem.yml'"
 
-      File.open(".renogen", 'w') do |f|
+      File.open('.renogen', 'w') do |f|
         f.write("changelog_path: './change_log/'\n")
       end
       puts "Created '.renogen'"

@@ -6,6 +6,5 @@ describe Renogen do
 
   describe '.generate' do
     # instance_double(Renogen::ExtractionStratagies, obtain: extraction_stratagy)
-
   end
 end

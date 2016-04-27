@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Renogen::ExtractionStratagies::YamlFile::Parser do
-  let(:file_contents) { { 'Foo' => 'Bar' }  }
+  let(:file_contents) { { 'Foo' => 'Bar' } }
 
   describe '#parse!' do
     before :each do
@@ -20,5 +20,4 @@ describe Renogen::ExtractionStratagies::YamlFile::Parser do
       expect(changelog.items.size).to eql 1
     end
   end
-
 end
