@@ -14,13 +14,6 @@ describe Renogen::ChangeLog::Model do
     end
   end
 
-  describe '#header' do
-    it 'returns version and date' do
-      subject.version = '123'
-      expect(subject.header).to eql "123 (#{Date.today})"
-    end
-  end
-
   describe '#add_change' do
     it 'adds change to changes store' do
       subject.add_change(change_item)
@@ -30,6 +23,27 @@ describe Renogen::ChangeLog::Model do
 
     it 'raises error when non valid change is added' do
       expect{subject.add_change('bar')}.to raise_error TypeError
+    end
+  end
+
+  describe '#date' do
+    it 'defaults to Date.today' do
+      expect(subject.date).to eql Date.today
+    end
+
+    it 'can be set using an option' do
+      date = Date.parse('2015-12-25')
+      model_instance = described_class.new(date: date)
+
+      expect(model_instance.date).to eql date
+    end
+
+    it 'has a setter' do
+      date = Date.parse('1981-03-20')
+
+      subject.date = date
+
+      expect(subject.date).to eql date
     end
   end
 

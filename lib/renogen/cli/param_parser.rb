@@ -44,6 +44,10 @@ module Renogen
             args['legacy_version'] = n
           end
 
+          opts.on("-rDATE", "--release-date=DATE", "Release date") do |n|
+            args['release_date'] = n
+          end
+
           opts.on_tail("-h", "--help", "Show this message") do
             puts opts
             exit

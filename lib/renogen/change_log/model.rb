@@ -5,18 +5,12 @@ module Renogen
     # Object to represent a Changelog/release notes
     class Model
       attr_reader :items
-      attr_accessor :version
+      attr_accessor :version, :date
 
       def initialize(options={})
         @version = options[:version]
+        @date = options[:date] || Date.today
         @items = []
-      end
-
-      # The title for the change log output
-      #
-      # @return [String]
-      def header
-        "#{version} (#{Date.today})"
       end
 
       # @return [Hash<group_name: change>]
