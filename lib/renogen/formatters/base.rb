@@ -13,18 +13,31 @@ module Renogen
         Renogen::Formatters.add(identifier.to_sym, self)
       end
 
+      # Generate a header for a given changelog
+      #
+      # @param changelog [Renogen::ChangeLog::Model]
+      #
+      # return [String]
+      def header(changelog)
+        "#{changelog.version} (#{changelog.date})"
+      end
+
       # Outputs a line or block of text appearing at the top of the change log.
       #
+      # @abstract
+      #
       # @param header [String]
-      # @return [NotImplementedError]
+      # @raise NotImplementedError
       def write_header(header)
         raise NotImplementedError
       end
 
       # Outputs a line or block as a header for a group.
       #
+      # @abstract
+      #
       # @param group [String]
-      # @return [NotImplementedError]
+      # @raise NotImplementedError
       def write_group(group)
         raise NotImplementedError
       end
@@ -37,8 +50,10 @@ module Renogen
 
       # Outputs a line or block as the body for a change.
       #
+      # @abstract
+      #
       # @param change [String]
-      # @return [NotImplementedError]
+      # @raise NotImplementedError
       def write_change(change)
         raise NotImplementedError
       end

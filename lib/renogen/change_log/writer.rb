@@ -10,7 +10,7 @@ module Renogen
       #
       # @param changelog [ChangeLog::Model]
       def write!(changelog)
-        puts formatter.write_header(changelog.header)
+        puts formatter.write_header(formatter.header(changelog))
         output_groups(changelog.groups)
         puts formatter.write_footer(changelog)
       end
