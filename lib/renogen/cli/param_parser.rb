@@ -48,6 +48,14 @@ module Renogen
             args['release_date'] = n
           end
 
+          opts.on("-IPATH", "--include=PATH", "Add a path to the load path") do |n|
+            $LOAD_PATH << n
+          end
+
+          opts.on("-RFILE", "--require=FILE", "Require a file from the load path") do |n|
+            require n
+          end
+
           opts.on_tail("-h", "--help", "Show this message") do
             puts opts
             exit
