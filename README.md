@@ -79,6 +79,43 @@ TODO
 * How to set configuration with `.renogen` file
 * How to change formatted single line
 
+### Custom formatter
+
+You can use your own formatter quite easily.
+
+For example, put this in `lib/my_project/renogen_formatter.rb`:
+```ruby
+require 'renogen/formatters'
+
+class MyProject::RenogenFormatter < Renogen::Formatters::Base
+  register :xml
+
+  def write_header(header)
+    "<release><header>#{header}</header>"
+  end
+
+  def write_group(group)
+    "<group><title>#{group}</title>"
+  end
+
+  def write_group_end
+    "</group>"
+  end
+
+  def write_change(change)
+    "<change>#{change}</change>"
+  end
+
+  def write_footer(*)
+    "</release>"
+  end
+end
+```
+
+You have to include that file when running renogen:
+
+`$ renogen -I. -Rlib/my_project/renogen_formatter 1.2.3`
+
 ### Why does renogen not use renogen?
 The amount of activity and contributes for this project is small and so it is more practical to use a text file.
 

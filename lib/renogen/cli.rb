@@ -20,6 +20,7 @@ module Renogen
       source = options['source'] || config_instance.input_source
       options['changelog_path'] ||= config_instance.changelog_path
       options['old_version'] ||= config_instance.changelog_path
+      options['release_date'] ||= Date.today
 
       begin
         generator = Renogen::Generator.new(version, source, format, options)

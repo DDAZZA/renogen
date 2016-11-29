@@ -1,3 +1,9 @@
+# NEXT
+## Improvement
+* Formatters may define their own header text for releases
+* Allow using a custom release date
+* Allow including Ruby files (useful for using custom formatters)
+
 # 1.1.1
 ## Minor
 * Fixed gemspec date

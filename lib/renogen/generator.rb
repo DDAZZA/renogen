@@ -14,6 +14,7 @@ module Renogen
     def generate!
       changelog = extraction_stratagy.extract
       changelog.version = version
+      changelog.date = options['release_date']
 
       writer.write!(changelog)
     end
