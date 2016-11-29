@@ -1,3 +1,3 @@
 module Renogen
-  VERSION='1.1.1'.freeze # :nodoc:
+  VERSION='1.2.0'.freeze # :nodoc:
 end

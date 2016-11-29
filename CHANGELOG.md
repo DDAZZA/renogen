@@ -1,4 +1,4 @@
-# NEXT
+# 1.2.0
 ## Improvement
 * Formatters may define their own header text for releases
 * Allow using a custom release date
