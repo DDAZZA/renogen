@@ -67,6 +67,7 @@ module Renogen
     #
     # @param ticket_name [String]
     def self.new_ticket(ticket_name)
+      raise 'You need to provide a ticket_name' if ticket_name.nil?
       file_path = File.join(Config.instance.changelog_path, 'next', "#{ticket_name}.yml")
       File.open(file_path, 'w') do |f|
         Config.instance.default_headings.each do |h|
