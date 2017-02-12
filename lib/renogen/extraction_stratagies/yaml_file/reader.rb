@@ -22,7 +22,8 @@ module Renogen
           change_directories.each do |file_path|
             content = ::YAML.load_file(file_path)
             raise Exceptions::YamlFileBlank.new(file_path) unless content
-            yield content
+
+            yield content, file_path
           end
         end
 

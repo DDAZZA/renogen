@@ -15,12 +15,12 @@ module Renogen
       # @return [String]
       def to_s
         return '' unless change
-        case change.class.to_s
-        when 'String'
+        case change
+        when String
           format_multiline(change)
-        when 'Hash'
+        when Hash
           format_oneline(change)
-        when 'Array'
+        when Array
           format_array(change)
         else
           raise TypeError
@@ -32,7 +32,7 @@ module Renogen
         change.is_a? Array
       end
 
-      # Iterater for each item within the change
+      # Iterator for each item within the change
       def each
         change.each do |item|
           yield item.to_s
@@ -51,13 +51,23 @@ module Renogen
       end
 
       def format_oneline(change)
-        # TODO Refactor
-        string = config.single_line_format.downcase.gsub('\n', '\n  ')
-        config.supported_keys.each do |key|
-          string = string.gsub(key, '#{change[\'' + key + '\']}')
+        result = single_line_format.dup
+
+        change.select { |key, _| config.supported_keys_for(group_name).include?(key) }.each do |key, item|
+          result = result.gsub(key, item)
         end
-        ss = "\"#{string}\""
-        eval(ss)
+
+        result
+      end
+
+      def single_line_format
+        format = if config.single_line_format.is_a?(Hash)
+          config.single_line_format[group_name.to_sym]
+        else
+          config.single_line_format
+        end
+
+        format.downcase.gsub('\n', '\n  ')
       end
 
       def config

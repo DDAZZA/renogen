@@ -12,10 +12,15 @@ module Renogen
         end
 
         # @return [ChangeLog::Model]
+        #
+        # @raise [Renogen::Exceptions::RuleViolation] when a file does not pass a rule validation
         def parse!
-          yaml_file_reader.each_yaml_file do |file|
-            parse_file(file)
+          yaml_file_reader.each_yaml_file do |file, file_path|
+            parse_file(file).tap do |results|
+              Renogen::Rules::File.validate!(file_path, results)
+            end
           end
+
           changelog
         end
 
@@ -24,8 +29,16 @@ module Renogen
         attr_reader :yaml_file_reader
 
         def parse_file(file)
-          file.each do |group_name, content|
-            changelog.add_change(ChangeLog::Item.new(group_name, content))
+          file.reduce({}) do |hash, file_item|
+            group_name, content = file_item
+
+            item = ChangeLog::Item.new(group_name, content)
+
+            changelog.add_change(item)
+
+            hash[group_name] = content
+
+            hash
           end
         end
 
@@ -33,7 +46,6 @@ module Renogen
           Renogen::Config.instance
         end
       end
-
     end
   end
 end

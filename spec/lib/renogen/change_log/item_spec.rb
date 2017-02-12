@@ -20,11 +20,11 @@ describe Renogen::ChangeLog::Item do
     end
 
     context "when change type is a 'Hash'" do
-      let(:change) { Hash.new }
+      let(:change) { {'summary' => '', 'link' => ''} }
       it 'returns single line string' do
         config = Renogen::Config.instance
         string = config.single_line_format.downcase.gsub('\n', '\n  ')
-        config.supported_keys.each do |key|
+        config.supported_keys_for('foo').each do |key|
           string = string.gsub(key, '')
         end
         expect(subject.to_s).to eql string

@@ -1,3 +1,11 @@
+require 'simplecov'
+
+SimpleCov.start do
+  add_filter 'spec'
+end
+
+require 'rspec/its'
+
 require 'renogen'
 
 RSpec.configure do |config|

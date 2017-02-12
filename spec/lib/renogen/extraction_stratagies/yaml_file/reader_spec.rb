@@ -14,7 +14,7 @@ describe Renogen::ExtractionStratagies::YamlFile::Reader do
     end
 
     it 'yields each yaml file within given directory' do
-      expect{ |b| subject.each_yaml_file(&b) }.to yield_with_args(file_contents)
+      expect{ |b| subject.each_yaml_file(&b) }.to yield_with_args(file_contents, 'foo_file')
     end
   end
 end
