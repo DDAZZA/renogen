@@ -15,15 +15,20 @@ change in the way the `renogen` command can be used to generate the changelog.
 Before
 
     renogen SOME_VERSION_STRING
-    
+
 The new version of renogen will not recognize `SOME_VERSION_STRING` as such. You may use the following commands
 instead:
 
     renogen -- SOME_VERSION_STRING
-    
+
     renogen generate SOME_VERSION_STRING
 
-The other commands `init` and `new` are not affected by this change.    
+The other commands `init` and `new` are not affected by this change.
+
+## Improvement
+
+Feature note files can be stored in subdirectories of the next version directory.
+
 
 # 1.2.0
 ## Improvement

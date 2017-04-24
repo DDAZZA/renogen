@@ -14,7 +14,7 @@ module Renogen
         end
 
         # Iterates thorugh each change file and yields the contents.
-        # 
+        #
         # an exception is thrown if the contents are blank
         #
         # @yield [Hash] yaml_file
@@ -32,14 +32,14 @@ module Renogen
         # @return [Array]
         def change_directories
           upgrade_versions = legacy_versions.map do |path|
-            File.join(path, "*.yml")
+            File.join(path, '**/*.yml')
           end
-          upgrade_versions << File.join(directory_path, 'next', "*.yml")
+          upgrade_versions << File.join(directory_path, 'next', '**/*.yml')
 
           Dir.glob(upgrade_versions)
         end
 
-        # @return [Array] 
+        # @return [Array]
         def legacy_versions
           return [] unless legacy_version
           legacy_version.gsub!('v','')
