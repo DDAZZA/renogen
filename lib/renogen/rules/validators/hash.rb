@@ -48,6 +48,19 @@ module Renogen
           config.key?('items')
         end
 
+        # Template for new changelog items that adhere to this rule
+        #
+        # @return [Hash]
+        def template
+          supported_keys.reduce({}) do |memo, key|
+            rule = rule_for(key)
+
+            memo[key] = rule ? rule.template : ''
+
+            memo
+          end
+        end
+
         private
 
         def validate_keys_for(contents)
@@ -78,12 +91,20 @@ module Renogen
           end
         end
 
-        def validate_item(item_name, item_contents)
+        def rule_for(item_name)
           rule_config = config.dig('items', item_name) || config.dig('items', :'*')
 
-          return [] unless rule_config
+          return nil unless rule_config
 
-          obtain_rule_for(item_name, rule_config).validate(item_contents)
+          obtain_rule_for(item_name, rule_config)
+        end
+
+        def validate_item(item_name, item_contents)
+          rule = rule_for(item_name)
+
+          return [] unless rule
+
+          rule.validate(item_contents)
         end
 
         def expected_type?(contents)

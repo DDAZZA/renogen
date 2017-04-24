@@ -32,6 +32,13 @@ module Renogen
           config.key?('type')
         end
 
+        # Template for new changelog items that adhere to this rule
+        #
+        # @return [String]
+        def template
+          ''
+        end
+
         private
 
         def self.register(klass)

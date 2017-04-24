@@ -2,4 +2,4 @@
 
 require 'renogen/cli'
 
-Renogen::Cli.run(ARGV)
+Renogen::Cli.start(ARGV)

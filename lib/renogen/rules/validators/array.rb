@@ -31,6 +31,13 @@ module Renogen
           config.key?('items')
         end
 
+        # A template for new changelog items
+        #
+        # @return [Array]
+        def template
+          ['replace me']
+        end
+
         private
 
         def items_rule

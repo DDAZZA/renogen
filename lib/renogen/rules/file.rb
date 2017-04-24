@@ -58,6 +58,21 @@ module Renogen
         raise Renogen::Exceptions::RuleViolation.new(file_path, errors) unless errors.empty?
       end
 
+      # Returns the validator for a given file path
+      #
+      # @param file_path [String] the file path of the changelog item
+      #
+      # @return [Renogen::Rules::File, nil] a validator if there is one for the given file_path or nil
+      def self.validator_for(file_path)
+        key = file_rules.keys.find do |pattern|
+          ::File.fnmatch(::File.join(config.changelog_path, '*', pattern), file_path, ::File::FNM_PATHNAME)
+        end
+
+        return nil unless key
+
+        file_rules[key]
+      end
+
       # @param file_path_pattern [String] a pattern (see File.fnmatch) that matches the files for the given rule
       #                                   configuration
       # @param config [Hash] the rule configuration which depends on the rule type - specified by the 'type' key
@@ -89,6 +104,23 @@ module Renogen
         validate_root_keys(file_contents)
       end
 
+      # Template for new changelog items that adhere to this rule
+      #
+      # @return [Hash]
+      def template
+        root_key_validator.supported_keys.each_with_object({}) do |key, hsh|
+          # cannot use root_key_validator.template as file rules only define required and optional keys
+          # the contents of those keys are described by group rules
+          key_validator = Renogen::Rules::Group.validator_for(key)
+
+          hsh[key] = if key_validator
+            key_validator.template
+          else
+            'REPLACE ME'
+          end
+        end
+      end
+
       private
 
       def self.config
@@ -98,14 +130,6 @@ module Renogen
       # @return [Hash]
       def self.file_rules
         config.file_rules
-      end
-
-      def self.validator_for(file_path)
-        key = file_rules.keys.find { |pattern| ::File.fnmatch(pattern, file_path) }
-
-        return nil unless key
-
-        file_rules[key]
       end
 
       def self.validate(validator, contents)

@@ -1,80 +1,136 @@
 require 'renogen'
+require 'thor'
 
 module Renogen
-  # Command line interface helpers
-  module Cli
-    require 'renogen/cli/param_parser'
+  class Cli < Thor
+    include Thor::Actions
 
-    # Execute the program via command line
-    # Renogen exceptions will be rescued and printed
-    # @param args [Array]
-    def self.run(args)
-      return init if args.first == 'init'
-      return new_ticket(args[1]) if args.first == 'new'
+    default_command :generate
 
-      param_parser = ParamParser.new(args)
-      version, options = param_parser.parse
-      config_instance = Config.instance
+    class_option :path,
+      desc: 'Path to changelog files',
+      type: :string,
+      default: Config.instance.changelog_path,
+      required: false,
+      aliases: %w(-p)
 
-      format = options['format'] || config_instance.output_format
-      source = options['source'] || config_instance.input_source
-      options['changelog_path'] ||= config_instance.changelog_path
-      options['old_version'] ||= config_instance.changelog_path
-      options['release_date'] ||= Date.today
+    desc 'generate VERSION', 'Generates the release notes'
+    option :format,
+      desc: 'Output format to be generated',
+      type: :string,
+      default: Config.instance.output_format,
+      required: false,
+      aliases: %w(-f)
+    option :source,
+      desc: 'Type of source that changes will be extracted from',
+      default: Config.instance.input_source,
+      required: false,
+      aliases: %w(-s)
+    option :legacy,
+      desc: 'Used to collate all changes since',
+      type: :string,
+      aliases: %w(-l)
+    option :version
+    def generate(version = nil)
+      opts = options.dup
+      
+      version_from_opts = opts.delete(:version)
+      source = opts.delete(:source)
+      format = opts.delete(:format)
 
-      begin
-        generator = Renogen::Generator.new(version, source, format, options)
-        generator.generate!
-      rescue Renogen::Exceptions::Base => e
-        puts e.message
-        exit -1
+      version ||= version_from_opts
+
+      opts['old_version'] = Config.instance.changelog_path
+
+      Renogen::Generator.new(version, source, format, opts).generate!
+    rescue Renogen::Exceptions::Base => e
+      puts e.message
+      exit -1
+    end
+
+    desc 'init', 'Creates files used by renogen'
+    def init
+      # create directory for storing changelog items
+      empty_directory options[:path]
+      empty_directory File.join(options[:path], 'next')
+
+      # create empty file .gitkeep
+      create_file File.join(options[:path], 'next', '.gitkeep'), ''
+
+      # add first changelog item
+      create_file File.join(options[:path], 'next', 'added_renogen_gem.yml'), <<-YAML
+Summary:
+  identifier: renogen
+  link: "https://github.com/DDAZZA/renogen"
+  summary: Added ReNoGen gem
+
+Detailed: |
+  Added ReNoGen gem
+
+  Allows release notes to be generated
+
+Tasks:
+  - $ renogen generate vX.Y.Z > release_vX_Y_Z.md
+      YAML
+
+      # create config file
+      create_file '.renogen', <<-YAML
+changelog_path: #{options[:path]}
+      YAML
+    end
+
+    desc 'new TICKET_NAME', 'Creates a change log entry file'
+    option :type,
+      desc: 'the type of the change log entry',
+      aliases: %w(-t)
+    def new(ticket_name)
+      create_file(new_file_path_for(ticket_name), template_for(ticket_name))
+    end
+
+    desc 'version', 'Show renogen version'
+    disable_class_options
+    def version
+      puts Renogen::VERSION
+    end
+
+    private
+
+    def new_inner_file_path_for(ticket_name)
+      parts = []
+
+      if options[:type] && !options[:type].empty?
+        parts << "#{options[:type].downcase}s"
+      end
+
+      parts << "#{ticket_name}.yml"
+
+      File.join(*parts)
+    end
+
+    def new_file_path_for(ticket_name)
+      File.join(options[:path], 'next', new_inner_file_path_for(ticket_name))
+    end
+
+    def template_for(ticket_name)
+      file_validator = Renogen::Rules::File.validator_for(new_file_path_for(ticket_name))
+
+      if file_validator
+        file_validator.template.to_yaml
+      else
+        template_for_default_headings.to_yaml
       end
     end
 
-    # Initialize the current working directory with an example change
-    def self.init
-      # TODO Refactor to use Config.instance.changelog_path
-      Dir.mkdir('./change_log')
-      puts "Created './change_log/'"
+    def template_for_default_headings
+      Config.instance.default_headings.each_with_object({}) do |heading, hsh|
+        group_validator = Renogen::Rules::Group.validator_for(heading)
 
-      Dir.mkdir('./change_log/next')
-      puts "Created './change_log/next/'"
-
-      File.open("./change_log/next/added_renogen_gem.yml", 'w') do |f|
-        f.write("Summary:\n")
-        f.write("  identifier: renogen\n")
-        f.write("  link: https://github.com/DDAZZA/renogen\n")
-        f.write("  summary: Added ReNoGen gem\n")
-        f.write("\n")
-        f.write("Detailed: |\n")
-        f.write("  Added ReNoGen gem\n")
-        f.write("\n")
-        f.write("  Allows release notes to be generated\n")
-        f.write("\n")
-        f.write("Tasks:\n")
-        f.write("  - $ renogen vX.Y.Z > release_vX_Y_Z.md\n")
-      end
-
-      puts "Created './change_log/next/added_renogen_gem.yml'"
-
-      File.open(".renogen", 'w') do |f|
-        f.write("changelog_path: './change_log/'\n")
-      end
-      puts "Created '.renogen'"
-    end
-
-    # Creates a new template file
-    #
-    # @param ticket_name [String]
-    def self.new_ticket(ticket_name)
-      raise 'You need to provide a ticket_name' if ticket_name.nil?
-      file_path = File.join(Config.instance.changelog_path, 'next', "#{ticket_name}.yml")
-      File.open(file_path, 'w') do |f|
-        Config.instance.default_headings.each do |h|
-          f.write("#{h}:\n")
+        hsh[heading] = if group_validator
+          group_validator.template
+        else
+          Config.instance.supported_keys.each_with_object({}) { |key, inner_hsh| inner_hsh[key] = '' }
         end
       end
-      puts "Created '#{file_path}'"
     end
   end
 end

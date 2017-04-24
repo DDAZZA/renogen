@@ -7,6 +7,13 @@ module Renogen
           'String' == config['type']
         end
 
+        # Template for new changelog items that adhere to this rule
+        #
+        # @return [String]
+        def template
+          'REPLACE ME'
+        end
+
         private
 
         def expected_type?(contents)

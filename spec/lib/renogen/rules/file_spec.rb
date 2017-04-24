@@ -9,7 +9,7 @@ RSpec.describe Renogen::Rules::File do
       allow(Renogen::Config.instance).to receive(:group_rules).and_return(group_rules)
     end
 
-    let(:file_path) { 'foo/bar/123.yml' }
+    let(:file_path) { "#{Renogen::Config.instance.changelog_path}next/foo/bar/123.yml" }
     let(:file_contents) { {} }
 
     let(:group_rules) { {} }

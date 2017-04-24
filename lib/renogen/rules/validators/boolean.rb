@@ -10,6 +10,13 @@ module Renogen
           'Boolean' == config['type']
         end
 
+        # Template for new changelog items
+        #
+        # @return [false]
+        def template
+          false
+        end
+
         private
 
         def expected_type?(contents)

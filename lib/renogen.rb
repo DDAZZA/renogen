@@ -2,9 +2,6 @@
 # It makes it easier and faster to produce changelogs and release notes
 # It works by stopping merge confics and decouping the change notes from releaes versions
 module Renogen
-
-  require 'pry'
-
   require 'renogen/version'
   require 'renogen/exceptions'
   require 'renogen/formatters'
