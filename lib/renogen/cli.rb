@@ -14,6 +14,8 @@ module Renogen
       required: false,
       aliases: %w(-p)
 
+    disable_required_check!(:version)
+
     desc 'generate VERSION', 'Generates the release notes'
     option :format,
       desc: 'Output format to be generated',
@@ -88,7 +90,6 @@ changelog_path: #{options[:path]}
     end
 
     desc 'version', 'Show renogen version'
-    disable_class_options
     def version
       puts Renogen::VERSION
     end
