@@ -9,7 +9,7 @@ module Renogen
       # @param header [String]
       # @return [String]
       def write_header(header)
-        "<html>\n<h1>#{header}</h1>"
+        "<html>\n<h1>#{header}\n</h1>"
       end
 
       # Outputs a line or block as a header for a group.

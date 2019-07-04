@@ -17,7 +17,7 @@ describe Renogen::Formatters::Markdown do
 
   describe '#write_group' do
     it 'returns group' do
-      expect(subject.write_group('group')).to eql "### group"
+      expect(subject.write_group('group')).to eql "## group"
     end
   end
 
