@@ -1,3 +1,8 @@
+# Next
+## Minor Improvement
+* Added newlines to html format
+* Fixed heading syntax in yaml
+
 # 1.2.0
 ## Improvement
 * Formatters may define their own header text for releases
