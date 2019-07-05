@@ -119,6 +119,13 @@ You have to include that file when running renogen:
 ### Why does renogen not use renogen?
 The amount of activity and contributes for this project is small and so it is more practical to use a text file.
 
+### How can I run from source?
+```
+$ git clone git@github.com:DDAZZA/renogen.git
+$ cd ./renogen/
+$ bundle install
+$ bundle exec ./bin/renogen test
+```
 ### License
 
 Renogen is a programming tool to generate a log of source code changes
