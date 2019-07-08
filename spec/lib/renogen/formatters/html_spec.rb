@@ -8,7 +8,7 @@ describe Renogen::Formatters::Html do
 
   describe '#write_header' do
     it 'returns header with newline' do
-      expect(subject.write_header('header')).to eql "<html>\n<h1>header</h1>"
+      expect(subject.write_header('header')).to eql "<html>\n<h1>header</h1>\n"
     end
   end
 

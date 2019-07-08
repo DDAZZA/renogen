@@ -11,13 +11,13 @@ describe Renogen::Formatters::Markdown do
 
   describe '#write_header' do
     it 'returns header with newline' do
-      expect(subject.write_header('header')).to eql "# header"
+      expect(subject.write_header('header')).to eql "# header\n\n"
     end
   end
 
   describe '#write_group' do
     it 'returns group' do
-      expect(subject.write_group('group')).to eql "### group"
+      expect(subject.write_group('group')).to eql "## group\n\n"
     end
   end
 

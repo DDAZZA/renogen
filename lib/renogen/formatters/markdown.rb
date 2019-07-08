@@ -10,7 +10,7 @@ module Renogen
       # @param header [String]
       # @return [String]
       def write_header(header)
-        "# #{header}"
+        "# #{header}\n\n"
       end
 
       # Outputs a line or block as a header for a group.
@@ -18,7 +18,7 @@ module Renogen
       # @param group [String]
       # @return [String]
       def write_group(group)
-        "### #{group}"
+        "## #{group}\n\n"
       end
 
       # Outputs a line or block as the body for a change.
