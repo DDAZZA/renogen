@@ -1,7 +1,7 @@
-# Next
+# 1.2.1
 ## Minor Improvement
 * Added newlines to html format
-* Fixed heading syntax in yaml
+* Fixed heading syntax in YAML
 
 # 1.2.0
 ## Improvement
