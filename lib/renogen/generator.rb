@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module Renogen
   # This is the conductor of the application
   class Generator
     attr_accessor :source, :version, :output_format, :options
 
-    def initialize(version, source, output_format, options={})
+    def initialize(version, source, output_format, options = {})
       @version = version
       @source = source
       @output_format = output_format
@@ -16,6 +18,7 @@ module Renogen
       changelog.version = version
       changelog.date = options['release_date']
 
+      validator.validate!(changelog) if options['validations'].any?
       writer.write!(changelog)
     end
 
@@ -31,6 +34,10 @@ module Renogen
 
     def formatter
       Renogen::Formatters.obtain(output_format, options)
+    end
+
+    def validator
+      Renogen::ChangeLog::Validator.new(formatter)
     end
   end
 end

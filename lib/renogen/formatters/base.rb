@@ -1,9 +1,14 @@
+# frozen_string_literal: true
+
 module Renogen
   module Formatters
-    # Implements a template pattern that forces the implemention of required 
+    # Implements a template pattern that forces the implemention of required
     # methods in sub classes
     class Base
-      def initialize(options={})
+      attr_reader :options
+
+      def initialize(options = {})
+        @options = options
       end
 
       # Adds class with identifier to formatters
