@@ -18,7 +18,7 @@ module Renogen
       changelog.version = version
       changelog.date = options['release_date']
 
-      validator.validate!(changelog) if options['validations'].any?
+      validator.validate!(changelog) if options['validations']&.any?
       writer.write!(changelog)
     end
 
