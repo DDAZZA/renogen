@@ -24,6 +24,7 @@ module Renogen
         attr_reader :yaml_file_reader
 
         def parse_file(file)
+          changelog.add_file(file)
           file.each do |group_name, content|
             changelog.add_change(ChangeLog::Item.new(group_name, content))
           end

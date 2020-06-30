@@ -69,6 +69,10 @@ Writes notes to html file
 
 `$ renogen --format html v1.2.1 > v1_2_1.html`
 
+Writes note to csv file
+
+`$ renogen --format csv v1.2.1 > v1_2_1.csv`
+
 Print all notes since v1.0.0 as text
 
 `$ renogen --format text -l v1.0.0 v1.2.1`

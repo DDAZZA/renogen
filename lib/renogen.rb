@@ -9,4 +9,5 @@ module Renogen
   require 'renogen/change_log'
   require 'renogen/generator'
   require 'renogen/config'
+  require 'renogen/writers'
 end
