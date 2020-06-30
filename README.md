@@ -33,6 +33,13 @@ By default renogen uses the yaml file stratagy to extract your notes
 
 `$ renogen --help # list available command options`
 
+If you would prefer you can use a prebuild docker image.
+
+Example:
+```bash
+$ docker run --rm -v `pwd`/.renogen:/.renogen:ro -v `pwd`/change_log:/change_log/ ddazza/renogen <CMD>
+```
+
 #### Adding YAML feature notes
 
 Create a new file within the 'next' version folder(default:'change_log/next/')
