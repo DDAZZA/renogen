@@ -18,7 +18,7 @@ module Renogen
       self.output_format = config_file['output_format'] || 'markdown'
       self.changelog_path = config_file['changelog_path'] || './change_log'
       self.default_headings = config_file['default_headings'] || %w(Summary Detailed Tasks)
-      self.validations = config_file['validations']
+      self.validations = config_file['allowed_values']
     end
 
     # Renogen configuration extension

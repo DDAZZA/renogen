@@ -6,7 +6,7 @@ describe Renogen::ChangeLog::Validator do
   let(:change_log) { Renogen::ChangeLog::Model.new }
   let(:validations) { { 'foo' => %w(bar baz) } }
 
-  subject { described_class.new(double('Formatter', options: { 'validations' => validations })) }
+  subject { described_class.new(double('Formatter', options: { 'allowed_values' => validations })) }
 
   before(:each) { change_log.add_change(Renogen::ChangeLog::Item.new('foo', 'bar')) }
 

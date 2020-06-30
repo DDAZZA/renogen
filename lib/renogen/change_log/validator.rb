@@ -6,7 +6,7 @@ module Renogen
     class Validator
       def initialize(formatter)
         @formatter = formatter
-        @validations = formatter.options['validations']
+        @validations = formatter.options['allowed_values']
       end
 
       # Validates the change log
@@ -33,7 +33,15 @@ module Renogen
         invalid_items = []
         validations.each do |heading, values|
           items_to_select = changelog.items.select { |log| log.group_name == heading }
-          invalid_values = items_to_select.map { |i| (changes_to_validate(i.change) - values) }.flatten.uniq
+          invalid_values = items_to_select.map do |i|
+            changes = changes_to_validate(i.change)
+            next changes - values if values.is_a?(Array)
+            next unless values.is_a?(Regexp)
+
+            changes.detect { |c| c !~ values } # return anything that does not match the regexp.
+          end
+
+          invalid_values = invalid_values.flatten.compact.uniq # remove duplicates and nils
           next if invalid_values.empty?
 
           invalid_items << { invalid_value: invalid_values, valid_values: values, group_name: heading }

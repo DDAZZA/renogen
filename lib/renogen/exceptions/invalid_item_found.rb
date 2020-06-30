@@ -18,7 +18,12 @@ module Renogen
         messages = ['Invalid items:']
         invalid_items.each do |item|
           invalid_value = item[:invalid_value]
-          messages << "Group: #{item[:group_name]}, Content: #{invalid_value}, Valid Value: #{item[:valid_values]}"
+
+          messages << if item[:valid_values].is_a?(Regexp)
+            "Group: #{item[:group_name]}, Content: #{invalid_value}, Pattern: #{item[:valid_values].inspect}"
+          else
+            "Group: #{item[:group_name]}, Content: #{invalid_value}, Valid Values: #{item[:valid_values]}"
+          end
         end
         messages.join("\n")
       end
