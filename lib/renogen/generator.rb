@@ -25,7 +25,7 @@ module Renogen
     protected
 
     def writer
-      Renogen::ChangeLog::Writer.new(formatter)
+      Renogen::Writers.obtain(output_format, formatter)
     end
 
     def extraction_stratagy

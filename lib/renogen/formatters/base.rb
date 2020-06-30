@@ -37,6 +37,16 @@ module Renogen
         raise NotImplementedError
       end
 
+      # Outputs a line or block listing all group headings found in the change log.
+      #
+      # @abstract
+      #
+      # @param changelog [Renogen::ChangeLog::Model]
+      # @raise NotImplementedError
+      def write_headings(changelog)
+        raise NotImplementedError
+      end
+
       # Outputs a line or block as a header for a group.
       #
       # @abstract
@@ -60,6 +70,16 @@ module Renogen
       # @param change [String]
       # @raise NotImplementedError
       def write_change(change)
+        raise NotImplementedError
+      end
+
+      # Outputs the hash contents of a full YAML release notes file
+      #
+      # @abstract
+      #
+      # @param file [Hash]
+      # @raise NotImplementedError
+      def write_file(file)
         raise NotImplementedError
       end
 

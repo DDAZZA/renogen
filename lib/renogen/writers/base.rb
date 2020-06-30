@@ -1,7 +1,16 @@
 module Renogen
-  module ChangeLog
+  module Writers
     # Writes out the change log
-    class Writer
+    class Base
+      # Adds class with identifier to writers
+      #
+      # @param identifier [String]
+      def self.register(*identifiers)
+        Renogen::Writers.add(identifiers.map(&:to_sym), self)
+      end
+      # Register base class as default writer to support custom formatters
+      register :default
+
       def initialize(formatter)
         @formatter = formatter
       end
@@ -33,6 +42,10 @@ module Renogen
           changes.each { |change| output_change(change) }
           puts formatter.write_group_end
         end
+      end
+
+      def output_files(files)
+        raise NotImplementedError
       end
     end
   end
