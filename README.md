@@ -36,6 +36,14 @@ and run
 bundle install
 ```
 
+If you would prefer you can use a prebuild docker image.
+
+Example:
+
+```bash
+$ docker run --rm -v `pwd`/.renogen:/.renogen:ro -v `pwd`/change_log:/change_log/ ddazza/renogen <CMD>
+```
+
 Now, you may initialize your repository with a `change_log` directory and a basic `.renogen` config file:
 
 ```
