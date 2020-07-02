@@ -3,6 +3,7 @@
 ## Improvement
 
 * Adds the ability for any default heading to specify valid values only.
+* Fix an issue when invalid yml files exist
 
 # 1.2.1
 
