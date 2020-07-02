@@ -15,6 +15,7 @@ module Renogen
       # @return [String]
       def to_s
         return '' unless change
+
         case change.class.to_s
         when 'String'
           format_multiline(change)
@@ -46,12 +47,12 @@ module Renogen
       end
 
       def format_array(change)
-        # TODO should return a string
+        # TODO: should return a string
         change
       end
 
       def format_oneline(change)
-        # TODO Refactor
+        # TODO: Refactor
         string = config.single_line_format.downcase.gsub('\n', '\n  ')
         config.supported_keys.each do |key|
           string = string.gsub(key, '#{change[\'' + key + '\']}')

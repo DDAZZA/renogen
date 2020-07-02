@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Renogen::Exceptions::StratagyNotFound do
@@ -8,6 +10,5 @@ describe Renogen::Exceptions::StratagyNotFound do
     it 'returns friendly error message' do
       expect(subject.message).to eql "Error: Stratagy type '#{name}' not found"
     end
-
   end
 end
