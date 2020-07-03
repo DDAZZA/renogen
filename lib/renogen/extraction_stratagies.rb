@@ -36,7 +36,5 @@ module Renogen
 
     require_relative 'extraction_stratagies/base'
     require_relative 'extraction_stratagies/yaml_file'
-    # require_relative 'extraction_stratagies/github'
-    # require_relative 'extraction_stratagies/gitlog'
   end
 end
