@@ -17,7 +17,6 @@ Gem::Specification.new do |s|
   s.executables << 'renogen'
   s.required_ruby_version = '~> 2.0'
 
-  s.add_development_dependency 'pry'
-  s.add_development_dependency 'pry-byebug'
+  # Required development dependencies
   s.add_development_dependency 'rspec', '~> 3.0'
 end

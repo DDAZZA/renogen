@@ -3,3 +3,5 @@ coverage/**
 doc/**
 .yardoc/**
 Gemfile.lock
+.ruby-version
+TODO
