@@ -36,12 +36,12 @@ tag-git: ## git tag
 
 tag-docker-latest:
 	@echo 'create tag latest'
-	docker tag $(IMAGE_NAME) $(DOCKER_REPO)/$(APP_NAME):latest
+	docker tag $(IMAGE_NAME) $(DOCKER_REPO)/$(IMAGE_NAME):latest
 .PHONY: tag-docker-latest
 
 tag-docker-version: ## docker tag
 	@echo 'create tag $(TAG)'
-	docker tag $(IMAGE_NAME) $(DOCKER_REPO)/$(APP_NAME):$(TAG)
+	docker tag $(IMAGE_NAME) $(DOCKER_REPO)/$(IMAGE_NAME):$(TAG)
 .PHONY: tag-docker-version
 
 push:
