@@ -27,7 +27,7 @@ build-gem: renogen.gemspec ## Build ruby gem
 .PHONY: build-gem
 
 
-tag: build tag-latest tag-version ## Create all tags
+tag: build tag-git tag-docker-latest tag-docker-version ## Create all tags
 
 tag-git: ## git tag
 	@echo 'create git tag $(TAG)'
