@@ -31,7 +31,7 @@ tag: build tag-git tag-docker-latest tag-docker-version ## Create all tags
 
 tag-git: ## git tag
 	@echo 'create git tag $(TAG)'
-	git tag $(TAG)
+	git tag "v$(TAG)"
 .PHONY: tag-git
 
 tag-docker-latest:
