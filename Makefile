@@ -47,5 +47,5 @@ tag-docker-version: ## docker tag
 push:
 	git push origin $(TAG)
 	gem push renogen-$(TAG).gem
-	docker push $(DOCKER_REPO)/$(APP_NAME):latest
-	docker push $(DOCKER_REPO)/$(APP_NAME):$(TAG)
+	docker push $(DOCKER_REPO)/$(IMAGE_NAME):latest
+	docker push $(DOCKER_REPO)/$(IMAGE_NAME):$(TAG)
