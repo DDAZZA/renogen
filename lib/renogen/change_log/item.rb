@@ -3,10 +3,10 @@ module Renogen
     # Object to represent single change item
     class Item
       attr_accessor :change
-      attr_reader :group_name, :ticket
+      attr_reader :group_name, :ticket_id
 
-      def initialize(ticket, group_name, change, options={})
-        @ticket = ticket
+      def initialize(ticket_id, group_name, change, options={})
+        @ticket_id = ticket_id
         @group_name = group_name
         @change = change
       end
