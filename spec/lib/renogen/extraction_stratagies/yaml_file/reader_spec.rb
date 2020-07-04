@@ -13,7 +13,7 @@ describe Renogen::ExtractionStratagies::YamlFile::Reader do
     it 'yields each yaml file within given directory' do
       allow(Dir).to receive(:glob).with([File.join(directory_path, 'next', '*.yml')]).and_return(['foo_file'])
       allow(YAML).to receive(:load_file).with('foo_file').and_return(file_contents)
-      expect { |b| subject.each_yaml_file(&b) }.to yield_with_args(file_contents)
+      expect { |b| subject.each_yaml_file(&b) }.to yield_with_args(file_contents, 0)
     end
 
     it 'throws invalid yaml file when missing quotes' do

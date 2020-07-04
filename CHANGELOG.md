@@ -3,7 +3,9 @@
 ## Improvement
 
 * Adds the ability for any default heading to specify valid values only.
-* Fix an issue when invalid yml files exist
+* Fix an issue when invalid YAML files exist
+* Added support for CSV format
+* Added support for Markdown table format
 
 # 1.2.1
 

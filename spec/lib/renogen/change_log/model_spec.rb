@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Renogen::ChangeLog::Model do
-  let(:change_item) { Renogen::ChangeLog::Item.new('foo', 'bar') }
+  let(:change_item) { Renogen::ChangeLog::Item.new(1, 'foo', 'bar') }
 
   describe '#groups' do
     it 'returns an empty hash when no changes' do

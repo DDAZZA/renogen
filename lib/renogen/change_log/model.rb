@@ -22,6 +22,15 @@ module Renogen
         end
       end
 
+      # @return [Hash<ticket id: string>]
+      def tickets
+        items.inject({}) do |hash, change|
+          hash[change.ticket_id] ||= {}
+          hash[change.ticket_id][change.group_name] = change.to_s
+          hash
+        end
+      end
+
       # Adds a change to the changelog
       #
       # @param change [Renogen::ChangeLog::Item]

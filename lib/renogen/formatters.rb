@@ -37,7 +37,9 @@ module Renogen
   end
 
   require_relative 'formatters/base'
+  require_relative 'formatters/csv'
   require_relative 'formatters/plain_text'
   require_relative 'formatters/markdown'
+  require_relative 'formatters/markdown_table'
   require_relative 'formatters/html'
 end

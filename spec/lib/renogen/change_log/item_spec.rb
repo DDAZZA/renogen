@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Renogen::ChangeLog::Item do
   let(:change) { Array.new }
-  subject { described_class.new('foo', change) }
+  subject { described_class.new(1, 'foo', change) }
 
   describe '#to_s' do
     context "when change type is nil" do

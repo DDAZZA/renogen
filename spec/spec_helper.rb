@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'renogen'
+require_relative 'support/renogen_helper'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
@@ -42,4 +43,6 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = :random
+
+  config.include Support::RenogenHelper
 end

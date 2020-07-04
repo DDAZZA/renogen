@@ -10,9 +10,29 @@ module Renogen
       #
       # @param changelog [ChangeLog::Model]
       def write!(changelog)
-        puts formatter.write_header(formatter.header(changelog))
+        puts formatter.write_header(formatter.header(changelog)) unless formatter.write_header(formatter.header(changelog)).nil?
+        if formatter.table_formatter?
+          write_by_table!(changelog)
+        else
+          write_by_group!(changelog)
+        end
+        puts formatter.write_footer(changelog) unless formatter.write_footer(changelog).nil?
+      end
+
+      # Writes out the change log by group
+      #
+      # @param changelog [ChangeLog::Model]
+      def write_by_group!(changelog)
         output_groups(changelog.groups)
-        puts formatter.write_footer(changelog)
+      end
+
+      # Writes out the change log by item
+      #
+      # @param changelog [ChangeLog::Model]
+      def write_by_table!(changelog)
+        changelog.tickets.each do |_, ticket|
+          puts formatter.write_change(ticket)
+        end
       end
 
       protected

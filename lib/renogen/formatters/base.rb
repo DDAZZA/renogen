@@ -11,6 +11,13 @@ module Renogen
         @options = options
       end
 
+      # Switch to determine if the formatter is in table format(instead of group format)
+      #
+      # return [Boolean] (default: false)
+      def table_formatter?
+        false # for backward compatibility
+      end
+
       # Adds class with identifier to formatters
       #
       # @param identifier [String]
@@ -34,7 +41,6 @@ module Renogen
       # @param header [String]
       # @raise NotImplementedError
       def write_header(header)
-        raise NotImplementedError
       end
 
       # Outputs a line or block as a header for a group.
@@ -44,7 +50,6 @@ module Renogen
       # @param group [String]
       # @raise NotImplementedError
       def write_group(group)
-        raise NotImplementedError
       end
 
       # Outputs a line or block of text appearing after a group.
