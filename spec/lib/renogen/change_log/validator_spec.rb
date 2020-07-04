@@ -8,7 +8,7 @@ describe Renogen::ChangeLog::Validator do
 
   subject { described_class.new(double('Formatter', options: { 'allowed_values' => validations })) }
 
-  before(:each) { change_log.add_change(Renogen::ChangeLog::Item.new('foo', 'bar')) }
+  before(:each) { change_log.add_change(Renogen::ChangeLog::Item.new(1, 'foo', 'bar')) }
 
   describe '#validate!' do
     context 'when no validations are available' do

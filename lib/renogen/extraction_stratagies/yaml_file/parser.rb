@@ -13,8 +13,8 @@ module Renogen
 
         # @return [ChangeLog::Model]
         def parse!
-          yaml_file_reader.each_yaml_file do |file|
-            parse_file(file)
+          yaml_file_reader.each_yaml_file do |file, index|
+            parse_file(index, file)
           end
           changelog
         end
@@ -23,10 +23,10 @@ module Renogen
 
         attr_reader :yaml_file_reader
 
-        def parse_file(file)
-          changelog.add_file(file)
+        # @param [Hash] data
+        def parse_file(id, file)
           file.each do |group_name, content|
-            changelog.add_change(ChangeLog::Item.new(group_name, content))
+            changelog.add_change(ChangeLog::Item.new(id, group_name, content))
           end
         end
 

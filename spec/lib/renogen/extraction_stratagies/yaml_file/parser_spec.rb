@@ -6,13 +6,13 @@ describe Renogen::ExtractionStratagies::YamlFile::Parser do
   describe '#parse!' do
     before :each do
       yaml_file_reader = double(Renogen::ExtractionStratagies::YamlFile::Reader)
-      allow(yaml_file_reader).to receive(:each_yaml_file).and_yield(file_contents)
+      allow(yaml_file_reader).to receive(:each_yaml_file).and_yield(file_contents, 1)
       allow(Renogen::ExtractionStratagies::YamlFile::Reader).to receive(:new).and_return(yaml_file_reader)
     end
 
     it 'extracts contents from file' do
-      changelog_item = Renogen::ChangeLog::Item.new('Foo', 'Bar')
-      allow(Renogen::ChangeLog::Item).to receive(:new).with('Foo', 'Bar').and_return changelog_item
+      changelog_item = Renogen::ChangeLog::Item.new(1, 'Foo', 'Bar')
+      allow(Renogen::ChangeLog::Item).to receive(:new).with(1, 'Foo', 'Bar').and_return changelog_item
 
       changelog = subject.parse!
 

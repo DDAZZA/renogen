@@ -11,6 +11,13 @@ module Renogen
         @options = options
       end
 
+      # Switch to determine if the formatter is in table format(instead of group format)
+      #
+      # return [Boolean] (default: false)
+      def table_formatter?
+        false # for backward compatibility
+      end
+
       # Adds class with identifier to formatters
       #
       # @param identifier [String]
@@ -34,17 +41,6 @@ module Renogen
       # @param header [String]
       # @raise NotImplementedError
       def write_header(header)
-        raise NotImplementedError
-      end
-
-      # Outputs a line or block listing all group headings found in the change log.
-      #
-      # @abstract
-      #
-      # @param changelog [Renogen::ChangeLog::Model]
-      # @raise NotImplementedError
-      def write_headings(changelog)
-        raise NotImplementedError
       end
 
       # Outputs a line or block as a header for a group.
@@ -54,7 +50,6 @@ module Renogen
       # @param group [String]
       # @raise NotImplementedError
       def write_group(group)
-        raise NotImplementedError
       end
 
       # Outputs a line or block of text appearing after a group.
@@ -70,16 +65,6 @@ module Renogen
       # @param change [String]
       # @raise NotImplementedError
       def write_change(change)
-        raise NotImplementedError
-      end
-
-      # Outputs the hash contents of a full YAML release notes file
-      #
-      # @abstract
-      #
-      # @param file [Hash]
-      # @raise NotImplementedError
-      def write_file(file)
         raise NotImplementedError
       end
 

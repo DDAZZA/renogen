@@ -3,6 +3,7 @@ module Renogen
   module ChangeLog
     require_relative 'change_log/item'
     require_relative 'change_log/group'
+    require_relative 'change_log/writer'
     require_relative 'change_log/model'
     require_relative 'change_log/validator'
   end

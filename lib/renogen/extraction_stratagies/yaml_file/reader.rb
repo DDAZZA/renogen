@@ -22,12 +22,12 @@ module Renogen
         # @yield [Hash] yaml_file
         def each_yaml_file
           path = ''
-          change_directories.each do |file_path|
+          change_directories.each_with_index do |file_path, i|
             path = file_path
             content = ::YAML.load_file(file_path)
             raise Exceptions::YamlFileBlank, file_path unless content
 
-            yield content
+            yield content, i
           end
         rescue Psych::SyntaxError
           raise Exceptions::YamlFileInvalid, path

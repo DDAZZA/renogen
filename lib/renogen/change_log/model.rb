@@ -4,14 +4,13 @@ module Renogen
   module ChangeLog
     # Object to represent a Changelog/release notes
     class Model
-      attr_reader :items, :files
+      attr_reader :items
       attr_accessor :version, :date
 
       def initialize(options={})
         @version = options[:version]
         @date = options[:date] || Date.today
         @items = []
-        @files = []
       end
 
       # @return [Hash<group_name: change>]
@@ -23,6 +22,15 @@ module Renogen
         end
       end
 
+      # @return [Hash<ticket id: string>]
+      def tickets
+        items.inject({}) do |hash, change|
+          hash[change.ticket_id] ||= {}
+          hash[change.ticket_id][change.group_name] = change.to_s
+          hash
+        end
+      end
+
       # Adds a change to the changelog
       #
       # @param change [Renogen::ChangeLog::Item]
@@ -30,15 +38,6 @@ module Renogen
       def add_change(change)
         raise TypeError unless change.is_a?(Renogen::ChangeLog::Item)
         items << change
-      end
-
-      # Adds a raw YAML file hash to the changelog
-      #
-      # @param file [Hash]
-      # @return [Array] All files
-      def add_file(file)
-        raise TypeError unless file.is_a?(Hash)
-        files << file
       end
     end
   end

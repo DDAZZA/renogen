@@ -2,8 +2,8 @@
 
 module Support
   module RenogenHelper
-    def renogen_change(group_name, change)
-      Renogen::ChangeLog::Item.new(group_name, change)
+    def renogen_change(ticket_id, group_name, change)
+      Renogen::ChangeLog::Item.new(ticket_id, group_name, change)
     end
   end
 end
