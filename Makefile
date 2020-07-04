@@ -27,7 +27,7 @@ build-gem: renogen.gemspec ## Build ruby gem
 .PHONY: build-gem
 
 
-tag: tag-latest tag-version ## Create all tags
+tag: build tag-latest tag-version ## Create all tags
 
 tag-git: ## git tag
 	@echo 'create git tag $(TAG)'
@@ -43,3 +43,9 @@ tag-docker-version: ## docker tag
 	@echo 'create tag $(TAG)'
 	docker tag $(IMAGE_NAME) $(DOCKER_REPO)/$(APP_NAME):$(TAG)
 .PHONY: tag-docker-version
+
+push:
+	git push origin $(TAG)
+	gem push renogen-$(TAG).gem
+	docker push $(DOCKER_REPO)/$(APP_NAME):latest
+	docker push $(DOCKER_REPO)/$(APP_NAME):$(TAG)
