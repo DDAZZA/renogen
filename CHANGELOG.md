@@ -1,3 +1,10 @@
+# 1.3.1
+
+## Minor Improvement
+
+* Chomps newline on end of CSV items
+* Fixes minor bug on markdown table format (extra whitespace)
+
 # 1.3.0
 
 ## Improvement
