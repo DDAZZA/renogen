@@ -22,6 +22,7 @@ module Renogen
           next if raw_line.nil?
 
           parsed_line = raw_line.is_a?(Array) ? raw_line.join(',') : raw_line
+          parsed_line = parsed_line.chomp
           parsed_line.gsub!("\n", '\n') if parsed_line.include?("\n")
 
           if parsed_line.include?(',')

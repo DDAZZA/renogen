@@ -22,7 +22,7 @@ module Renogen
           "# #{changelog.version} (#{changelog.date})",
           "",
           "| #{headings.join(' | ')} |",
-          "| #{headings.map{|_| ' - |' }.join()}"
+          "| #{headings.map{|_| '-' }.join(' | ')} |"
         ].join("\n")
       end
 
