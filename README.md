@@ -138,6 +138,7 @@ with the following keys:
 | `changelog_path`     | The directory where the feature note files are stored. | `./change_log` | `./doc/src/changes` |
 | `default_headings`   | The headings/group names that will be printed into a feature note file created by the `new` command. Ignored when there is a rule defined for the given file name. | `%w[Summary Detailed Tasks]` | `%w[Title Description Deployment]` |
 | `allowed_values`     | Allowed values for default headings.  See [Allowed Values](#AllowedValues). | `{}` (none) |  |
+| `remove_duplicates`  | Remove duplicate items from output release notes. Not applicable in `csv` or `markdown_table` formats. | `false` | |
 
 <a name="AllowedValues"></a>
 ## Allowed Values

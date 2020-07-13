@@ -50,9 +50,21 @@ module Renogen
       def output_groups(groups)
         groups.each do |group, changes|
           puts formatter.write_group(group)
-          changes.each { |change| output_change(change) }
+          deduped_changes(changes).each { |change| output_change(change) }
           puts formatter.write_group_end
         end
+      end
+
+      def deduped_changes(changes)
+        return changes unless config.remove_duplicates
+
+        changes.uniq { |c| c.to_s }
+      end
+
+      private
+
+      def config
+        Config.instance
       end
     end
   end
