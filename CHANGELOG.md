@@ -1,3 +1,9 @@
+# 1.4.0
+
+## Improvement
+
+* Adds config option to remove duplicate entries from non-table output formats.
+
 # 1.3.1
 
 ## Minor Improvement
