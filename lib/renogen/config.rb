@@ -8,7 +8,7 @@ module Renogen
   class Config
     include Singleton
     attr_accessor :single_line_format, :input_source, :output_format, :supported_keys, :changelog_path,
-                  :default_headings, :validations
+                  :default_headings, :validations, :remove_duplicates
 
     def initialize
       config_file = load_yaml_config
@@ -19,6 +19,7 @@ module Renogen
       self.changelog_path = config_file['changelog_path'] || './change_log'
       self.default_headings = config_file['default_headings'] || %w(Summary Detailed Tasks)
       self.validations = config_file['allowed_values']
+      self.remove_duplicates = config_file['remove_duplicates'] || false
     end
 
     # Renogen configuration extension

@@ -36,6 +36,9 @@ describe Renogen::ChangeLog::Writer do
         expected_output.split("\n").each do |line|
           expect($stdout.gets.strip).to eq(line)
         end
+
+        # read remaining output and check we reached the end
+        expect($stdout.read.gsub("\n", '')).to be_empty
       end
     end
 
@@ -142,6 +145,61 @@ describe Renogen::ChangeLog::Writer do
       end
 
       it_behaves_like 'a valid output format'
+    end
+
+    describe 'duplicates' do
+      let(:formatter) { Renogen::Formatters::PlainText.new }
+      let(:changes_with_duplicates) do
+        [
+          renogen_change(1, 'Group 1', 'This is a Group 1 change'),
+          renogen_change(1, 'Group 2', 'This is a Group 2 change'),
+          renogen_change(2, 'Group 1', 'This is a Group 1 change'),
+          renogen_change(2, 'Group 2', 'This is a Group 2 change')
+        ]
+      end
+
+      context 'when remove duplicates is false in config (default)' do
+        it_behaves_like 'a valid output format' do
+          let(:changes) { changes_with_duplicates }
+
+          let(:expected_output) do
+            <<~EOS
+              test (2020-07-08)
+
+              Group 1
+              - This is a Group 1 change
+              - This is a Group 1 change
+
+              Group 2
+              - This is a Group 2 change
+              - This is a Group 2 change
+            EOS
+          end
+        end
+      end
+
+      context 'when remove duplicates is true in config' do
+        before do
+          allow(Renogen::Config.instance)
+            .to receive(:remove_duplicates).and_return(true)
+        end
+
+        it_behaves_like 'a valid output format' do
+          let(:changes) { changes_with_duplicates }
+
+          let(:expected_output) do
+            <<~EOS
+              test (2020-07-08)
+
+              Group 1
+              - This is a Group 1 change
+
+              Group 2
+              - This is a Group 2 change
+            EOS
+          end
+        end
+      end
     end
   end
 end
