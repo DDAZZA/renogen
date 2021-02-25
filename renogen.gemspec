@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/DDAZZA/renogen'
   s.license     = 'GPL-3.0'
   s.executables << 'renogen'
-  s.required_ruby_version = '~> 2.0'
+  s.required_ruby_version = '>= 2.0'
 
   # Required development dependencies
   s.add_development_dependency 'rspec', '~> 3.0'

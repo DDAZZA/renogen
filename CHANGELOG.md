@@ -1,3 +1,9 @@
+# 1.4.1
+
+## Minor Improvement
+
+* Adds support for ruby v3
+
 # 1.4.0
 
 ## Improvement
